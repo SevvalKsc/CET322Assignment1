@@ -1,0 +1,74 @@
+@model Book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Book Library</title>
+    <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            .red {
+                color: red;
+            }
+            .yellow {
+                color: yellow;
+            }
+            .green {
+                color: green;
+            }
+        </style>
+</head>
+<body>
+<h1> Book Library </h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Page Number</th>
+        <th>Due Date</th>
+        <th>Days Remaining</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> @Model.Name </td>
+        <td> @Model.Author </td>
+        <td> @Model.PageNum </td>
+        <td> @Model.DueDate.ToShortDateString() </td>
+        <td> @if (@Model.DaysRemaining < 0)
+                 {
+                     <p style="color: red;">Overdue by @Model.DaysRemaining days</p>
+                 }
+                 else if (@Model.DaysRemaining <= 7)
+                 {
+                     <p style="color: yellow;"> @Model.DaysRemaining days remaining</p>
+                 }
+                 else
+                 {
+                     <p style="color: green;"> @Model.DaysRemaining days remaining</p>
+                 } </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+
+</div>
+
+</body>
+</html>
